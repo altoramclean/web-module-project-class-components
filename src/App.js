@@ -9,19 +9,16 @@ const list = [
     id: 1528817077286,
     completed: false
   },
+
   {
     task: 'Bake Cookies',
     id: 1528817084358,
     completed: false
   },
+
   {
-    task: 'Clean LivingRoom',
-    id: 1234567890,
-    completed: false
-  },
-  {
-    task: 'Go For a Jog',
-    id: 15348960784632,
+    task: 'Clean Living-Room',
+    id: 123456,
     completed: false
   }
 ];
@@ -37,6 +34,7 @@ class App extends React.Component {
       todo: list
     }
   };
+
   toggleItem = id => {
     const newList = this.state.todo.map(item => {
       if( item.id === id) {
@@ -79,13 +77,12 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <div className = "Error">
           <h2>Welcome to Your Todo App!</h2>
+          <h3>Add Anything You'd Like!</h3>
           <TodoList clearDone = {this.clearDone} 
                     todo = {this.state.todo}
                     toggleItem = {this.toggleItem}
           />
-        </div>
 
         <div className = "formList">
           <TodoForm addItem = {this.addItem}
