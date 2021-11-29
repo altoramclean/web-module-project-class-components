@@ -31,12 +31,70 @@ const list = [
 
 
 class App extends React.Component {
-  // you will need a place to store your state in this component.
-  // design `App` to be the parent component of your application.
-  // this component is going to take care of state, and any change handlers you need to work with your state
   constructor() {
     super();
     this.state  = {
       todo: list
     }
   };
+  toggleItem = id => {
+    const newList = this.state.todo.map(item => {
+      if( item.id === id) {
+        return {
+          ...item,
+          done: !item.done
+        }
+
+      } else {
+        return(item);
+      }
+
+    })
+    this.setState({
+      todo: newList
+    })
+  };
+
+  addItem = task => {
+    const newItem = {
+      task: task,
+      id: this.state.todo.length,
+      completed: false
+    }
+
+    this.setState({
+      todo: [...this.state.todo, newItem]
+    })
+  }
+  clearDone = event => {
+    event.preventDefault();
+    const newList = this.state.todo.filter(item => {
+      return(item.done === false)
+    })
+
+    this.setState({
+      todo: newList
+    })
+  }
+  render() {
+    return (
+      <div className="App">
+        <div className = "Error">
+          <h2>Welcome to Your Todo App!</h2>
+          <TodoList clearDone = {this.clearDone} 
+                    todo = {this.state.todo}
+                    toggleItem = {this.toggleItem}
+          />
+        </div>
+
+        <div className = "formList">
+          <TodoForm addItem = {this.addItem}
+                    clearDone = {this.clearDone}
+          />
+        </div>
+      </div>
+    )
+  }
+}
+
+export default App;
