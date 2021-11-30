@@ -24,9 +24,6 @@ const list = [
 ];
 
 
-
-
-
 class App extends React.Component {
   constructor() {
     super();
@@ -40,7 +37,7 @@ class App extends React.Component {
       if( item.id === id) {
         return {
           ...item,
-          done: !item.done
+          completed: !item.completed
         }
 
       } else {
@@ -64,10 +61,10 @@ class App extends React.Component {
       todo: [...this.state.todo, newItem]
     })
   }
-  clearDone = event => {
+  clearCompleted= event => {
     event.preventDefault();
     const newList = this.state.todo.filter(item => {
-      return(item.done === false)
+      return(item.completed === false)
     })
 
     this.setState({
@@ -79,14 +76,14 @@ class App extends React.Component {
       <div className="App">
           <h2>Welcome to Your Todo App!</h2>
           <h3>Add Anything You'd Like!</h3>
-          <TodoList clearDone = {this.clearDone} 
+          <TodoList clearCompleted = {this.clearCompleted} 
                     todo = {this.state.todo}
                     toggleItem = {this.toggleItem}
           />
 
         <div className = "formList">
           <TodoForm addItem = {this.addItem}
-                    clearDone = {this.clearDone}
+                    clearCompleted = {this.clearCompleted}
           />
         </div>
       </div>

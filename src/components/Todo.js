@@ -6,7 +6,7 @@ const Item = props =>{
     }
 
     return (
-        <div onClick= {handleClick} className={`item${props.item.done ? 'done': ' '}`} >
+        <div onClick= {handleClick} className={`item${props.item.completed ? 'completed': ' '}`} >
      <p>{props.item.todo}</p>
         </div>
     )
